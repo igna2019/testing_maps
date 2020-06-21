@@ -1,0 +1,123 @@
+/*---------------------------------Colours */
+
+.bg-color-name-title {
+  background-color: #e6e6e6;
+}
+
+/*--------------------------------------Heading */
+.heading {
+  margin-left: 0px;
+  margin-bottom: 10px;
+  padding: 10px;
+  margin-top: 0px;
+}
+
+.title {
+  font-weight: 200;
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: rgb(70, 72, 92);
+  text-align: center;
+}
+
+/*--------------------------------------Special paddigns/Margings/Text */
+
+.section-core {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.section-box {
+  margin-bottom: 20px;
+}
+
+/*--------------------------------------Footer */
+
+footer {
+  background-color: #e6e6e6;
+  min-height: 100px;
+  margin: 0px;
+}
+
+.footer-box {
+  margin: 0;
+  background-color: #e6e6e6;
+  padding-top: 15px;
+  padding-bottom: 5px;
+}
+
+.social-links li a i {
+  width: 32px;
+  height: 32px;
+  padding: 12px 0px;
+  border-radius: 50%;
+  font-size: 13px;
+  line-height: 7px;
+  text-align: center;
+  color: #fafafa;
+  background: #8f8f8f;
+  transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  -webkit-transition: all 0.35s ease-in-out;
+  -o-transition: all 0.35s ease-in-out;
+}
+.pos-fixed {
+  position: fixed;
+}
+/*--------------------------------------------Map*/
+#map {
+  height: 520px;
+  width: 480px;
+  position: relative;
+  overflow: hidden;
+}
+div#map {min-height: 360px;}
+
+#panel {
+      height: 100%;
+      width: null;
+      background-color: white;
+      position: fixed;
+      z-index: 1;
+      overflow-x: hidden;
+      transition: all .2s ease-out;
+    }
+
+    .open {
+      width: 250px;
+    }
+
+    /* Styling for place details */
+    .hero {
+      width: 100%;
+      height: auto;
+      max-height: 166px;
+      display: block;
+    }
+
+    .place,
+    p {
+      font-family: 'open sans', arial, sans-serif;
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+
+    .details {
+      color: darkslategrey;
+    }
+
+    a {
+      text-decoration: none;
+      color: cadetblue;
+    }
+
+/*------media queries */
+
+@media (max-width: 600px) {
+  .deskopt-view {
+    display: none;
+  }
+}

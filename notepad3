@@ -1,0 +1,83 @@
+var map;
+var service;
+var infowindow;
+let searchResults
+
+
+
+var searchParams = {location: pyrmont, radius: 500, type: ['Pharmacy']}
+
+
+function changeToHospital(){
+    searchParams.type == 'Hospital'
+}
+
+
+function changeToPharmacy(){
+    searchParams.type == 'Pharmacy'
+}
+
+  service.nearbySearch(searchParams)
+
+function search() {
+    let pos;
+if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          }
+        
+
+  var pyrmont = new google.maps.LatLng(pos.lat, pos.lng);
+
+  map = new google.maps.Map(document.getElementById('map'), {
+      center: pyrmont,
+      zoom: 15
+    });
+
+//   var request = {
+//     location: pyrmont,
+//     radius: '1500',
+//     type: ['hospital']
+//   };
+
+  service = new google.maps.places.PlacesService(map);
+  service.nearbySearch(searchParams, callback);
+        
+        
+        })
+        
+        
+        };
+
+
+}
+
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+      searchResults = results
+      console.log(searchResults, "SOY SEARCHRESULTSSSS")
+    for (var i = 0; i < results.length; i++) {
+
+    // crear marcadores en el mapa para cada posicion del arreglo result
+      var place = results[i];
+
+      // lo que esta fallando aca es que nunca definimos createMarker
+      createMarker(results[i]);
+      
+
+    // crear un li para que sea appendeado o agregado al ul que es la lista de resultados   
+//   var tablaResults = document.getElementById('panel')
+//        tablaResults.append(place)    <----- estoy agregando un LI a la tabla con la info del place ( que defini en la linea 48)
+//
+//
+//
+//
+
+      var placeName = place.name
+      placeAddress = place.address
+      tabladelugares.append(li(results[i])
+    }
+  }
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+
+    <title>testing API</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="row no-gutters">
+        <div class="col-12 bg-color-name-title heading desktop-view">
+          <h3 class="title">Pharmacy and Hospital Search</h3>
+        </div>
+      </div>
+    </header>
+    <section class="container-fluid section-box">
+      <div class="row">
+        <!--Home Content search left side box-->
+        <div class="col-12 col-sm-6 col-md-4 offset-md-1 section-core">
+          <h3 class="section-heading">Search box</h3>
+          <div id="panel">
+          <button id="search" onclick="searchHospital()">Hospital</button>
+          </div>
+        </div>
+
+        <!-- Home Content map right side-->
+        <div class="col-12 col-sm-6 col-md-4 section-core">
+          <h3 class="section-heading">Map</h3>
+          <div id="map">
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="container-fluid footer-box">
+      <div class="row bg-color-name-title">
+        <!-- Footer Left Leonard Bernstein -->
+        <div class="col-6 float-left">
+          <h5>Leonard Bernstein</h5>
+          <p>
+            "To achieve great things, two things are needed; a plan, and not
+            quite enough time."
+          </p>
+        </div>
+
+        <!-- Footer Right Social Links -->
+        <div class="col-6">
+          <ul class="list-inline social-links float-right">
+            <li class="list-inline-item">
+              <a href="https://twitter.com" target="_blank">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                <span class="sr-only">Twitter</span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.linkedin.com" target="_blank">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                <span class="sr-only">LinkedIn</span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a
+                href="https://www.facebook.com/JustInstrumentalMusic"
+                target="_blank"
+              >
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                <span class="sr-only">Facebook</span>
+              </a>
+            </li>
+
+            <li class="list-inline-item">
+              <a href="https://youtube.com" target="_blank">
+                <i class="fa fa-youtube" aria-hidden="true"></i>
+                <span class="sr-only">YouTube</span>
+              </a>
+            </li>
+          </ul>
+          <div></div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq07rlfhFqfnMOiH17BqIo6Vt2C-YB95A&callback=initMap"></script>-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq07rlfhFqfnMOiH17BqIo6Vt2C-YB95A&libraries=places"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
