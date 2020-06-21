@@ -1,50 +1,134 @@
 var map;
 var service;
 var infowindow;
-let searchResults
+let searchResults;
 
 function searchHospital() {
-    let pos;
-if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-          pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          }
-        
+  let pos;
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
 
-  var pyrmont = new google.maps.LatLng(pos.lat, pos.lng);
+      var pyrmont = new google.maps.LatLng(pos.lat, pos.lng);
 
-  map = new google.maps.Map(document.getElementById('map'), {
-      center: pyrmont,
-      zoom: 15
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: pyrmont,
+        zoom: 15,
+      });
+
+      var request = {
+        location: pyrmont,
+        radius: "5500",
+        type: ["hospital"],
+      };
+
+      service = new google.maps.places.PlacesService(map);
+      service.nearbySearch(request, callback);
     });
-
-  var request = {
-    location: pyrmont,
-    radius: '1500',
-    type: ['hospital']
-  };
-
-  service = new google.maps.places.PlacesService(map);
-  service.nearbySearch(request, callback);
-        
-        
-        })
-        
-        
-        };
-
-
+  }
 }
 
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
-      searchResults = results
-      console.log(results, "SOY RESULTSSSS")
+    searchResults = results;
+    console.log(results);
     for (var i = 0; i < results.length; i++) {
       var place = results[i];
+      var attributions = results[i].html_attributions;
+      //console.log(place);
+      //console.log(attributions);
+      //document.getElementById("panel").innerHTML= `shows ${attributions.name}`;
+
       createMarker(results[i]);
     }
   }
+}
+
+function initAutocomplete() {
+  var map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 53.1424, lng: 7.6921 },
+    zoom: 13,
+    mapTypeId: "roadmap",
+  });
+  const options = {
+    types: ["hospital"],
+  };
+  // Create the search box and link it to the UI element.
+  var input = document.getElementById("pac-input");
+  var searchBox = new google.maps.places.SearchBox(input, options);
+
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener("bounds_changed", function () {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  var markers = [];
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener("places_changed", function () {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    // Clear out the old markers.
+    markers.forEach(function (marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+    console.log(places);
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function (place) {
+      if (!place.geometry) {
+        console.log("Returned place contains no geometry");
+        return;
+      }
+      var icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25),
+      };
+
+      // Create a marker for each place.
+      markers.push(
+        new google.maps.Marker({
+          map: map,
+          icon: icon,
+          title: place.name,
+          position: place.geometry.location,
+        })
+      );
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+
+    map.fitBounds(bounds);
+    showResults(places);
+  });
+}
+
+function showResults(places) {
+  let placesRows = "";
+  places.forEach((place, index) => {
+    placesRows += `<li><div id="${index}" class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">${place.name}</h5>
+    <p class="card-text">${place.formatted_address}</p>
+    <a href="#" class="card-link">Show on map</a>
+  </div>
+</div></li>`;
+  });
+  $("#panel").empty().append(placesRows);
 }

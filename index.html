@@ -15,6 +15,7 @@
     />
     <link rel="stylesheet" type="text/css" href="./style.css" />
 
+
     <title>testing API</title>
   </head>
 
@@ -23,24 +24,26 @@
       <div class="row no-gutters">
         <div class="col-12 bg-color-name-title heading desktop-view">
           <h3 class="title">Pharmacy and Hospital Search</h3>
+          <button onclick="searchHospital()">Hospital</button>
+          <button onclick="searchHospital()">Pharmacies</button>
+          <input id="pac-input" class="controls" type="text" placeholder="Search Box">
         </div>
       </div>
     </header>
     <section class="container-fluid section-box">
-      <div class="row">
+       <div class="row">
         <!--Home Content search left side box-->
         <div class="col-12 col-sm-6 col-md-4 offset-md-1 section-core">
-          <h3 class="section-heading">Search box</h3>
-          <div id="panel">
-          <button id="search" onclick="searchHospital()">Hospital</button>
-          </div>
+          <h3 class="section-heading">Search Results</h3>
+          <ul id="panel" >
+          
+          </ul>
         </div>
 
         <!-- Home Content map right side-->
         <div class="col-12 col-sm-6 col-md-4 section-core">
           <h3 class="section-heading">Map</h3>
-          <div id="map">
-          </div>
+          <div id="map"></div>
         </div>
       </div>
     </section>
@@ -91,9 +94,12 @@
         </div>
       </div>
     </footer>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq07rlfhFqfnMOiH17BqIo6Vt2C-YB95A&callback=initMap"></script>-->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq07rlfhFqfnMOiH17BqIo6Vt2C-YB95A&libraries=places"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>   
     <script src="main.js"></script>
+    <script
+      type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq07rlfhFqfnMOiH17BqIo6Vt2C-YB95A&libraries=places&callback=initAutocomplete"
+    ></script>
+    
   </body>
 </html>
